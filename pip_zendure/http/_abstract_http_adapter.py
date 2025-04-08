@@ -1,4 +1,3 @@
-import logging
 from abc import ABC, abstractmethod
 from enum import Enum
 
@@ -9,11 +8,6 @@ from pip_zendure._config import CONFIG
 
 from .._const import REGION, USER_AGENT
 
-logging.basicConfig(
-    format="%(levelname)s [%(asctime)s] %(name)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    level=logging.DEBUG,
-)
 
 ExponentialRetryPolicy = (
     RetryPolicy()

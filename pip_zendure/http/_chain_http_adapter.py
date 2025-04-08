@@ -1,3 +1,4 @@
+import logging
 import httpx
 
 from ._abstract_http_adapter import HTTP_METHOD, AbstractHTTPAdapter
@@ -11,7 +12,9 @@ class ChainHTTPAdapter(AbstractHTTPAdapter):
         self, method: HTTP_METHOD, url: str, payload: dict = None
     ) -> httpx.Response:
         for adapter in self.adapters:
-            print(f"Trying adapter: {adapter.__class__.__name__}")
+            logging.getLogger(__name__).debug(
+                f"Trying adapter: {adapter.__class__.__name__}"
+            )
             response = await adapter.request(method, url, payload)
 
             if (
